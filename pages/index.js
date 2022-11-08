@@ -4,12 +4,16 @@ import { useState } from "react";
 import formImage from "../public/form.png";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 
 {
   /* HANDLING FORMS IN REACT WITH FORMIK - VALIDATION WITH YUP*/
 }
 export default function Home() {
+  //ROUTER
+  //init router
+  const router = useRouter();
   //FORMIK LOGIC
   //init formik - pass in an object on execution with initial, or default values for our form
   const formik = useFormik({
@@ -34,6 +38,8 @@ export default function Home() {
     //formic submit form logic
     onSubmit: (values) => {
       console.log(values);
+      //push to congrats page when done - we can pass data through with a query - here's it's set as our formik values object
+      router.push({ pathname: "/success", query: values });
     },
   });
   console.log(formik.errors);
