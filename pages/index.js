@@ -5,6 +5,7 @@ import formImage from "../public/form.png";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
+import { motion as m } from "framer-motion";
 import styles from "../styles/Home.module.css";
 
 {
@@ -44,7 +45,12 @@ export default function Home() {
   });
   console.log(formik.errors);
   return (
-    <div>
+    <m.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="absolute w-full"
+    >
       <Head>
         <title>Forms in React</title>
         <meta name="description" content="React Forms" />
@@ -180,6 +186,6 @@ export default function Home() {
           </div>
         </form>
       </main>
-    </div>
+    </m.div>
   );
 }
